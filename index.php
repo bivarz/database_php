@@ -1,7 +1,10 @@
 <?php include("connection.php");
 
-$consulta =" SELECT * FROM alunos";
+$consulta =" SELECT nome,cpf,data_nascimento,valor_notaav1,valor_notaav2 FROM alunos,notas WHERE cpf = fk_alunos_cpf";
+$notas = " SELECT valor_notaav1,valor_notaav2 FROM notas WHERE cpf = fk_alunos_cpf";
 $con = $mysqli -> query($consulta) or die($mysqli ->error);
+
+
 
 ?>
 
@@ -34,8 +37,8 @@ $con = $mysqli -> query($consulta) or die($mysqli ->error);
           <td><?php echo $dado["data_nascimento"] ?> </td>
           <td><?php echo $dado["valor_notaav1"] ?> </td>
           <td><?php echo $dado["valor_notaav2"] ?> </td>
-          <td><?php echo $dado["valor_nota1 + valor_nota2 "] ?> </td>
-          <td><?php echo $dado["valor_nota1 + valor_nota2 /2"] ?> </td>
+          <td><?php echo $dado["valor_notaav1"]+$dado["valor_notaav2"] ?> </td>
+          <td><?php echo ($dado["valor_notaav1"]+$dado["valor_notaav2"])/2 ?> </td>
         </tr>
       <?php } ?>
         </table>
